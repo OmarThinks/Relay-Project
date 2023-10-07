@@ -9,6 +9,7 @@ const NewsfeedQuery = graphql`
     topStory {
       title
       summary
+      createdAt
       poster {
         name
         profilePicture {
@@ -25,6 +26,8 @@ const NewsfeedQuery = graphql`
 export default function Newsfeed() {
   const data = useLazyLoadQuery<NewsfeedQueryType>(NewsfeedQuery, {});
   const story = data.topStory;
+
+  console.log(data);
 
   return (
     <div className="newsfeed">
