@@ -6,6 +6,7 @@ import StorySummary from "./StorySummary";
 import Image from "./Image";
 import Timestamp from "./Timestamp";
 import { graphql } from "relay-runtime";
+import { useFragment } from "react-relay";
 
 const StoryFragment = graphql`
   fragment StoryFragment on Story {
@@ -37,13 +38,15 @@ type Props = {
 };
 
 export default function Story({ story }: Props): React.ReactElement {
+  const data = useFragment(StoryFragment, story);
+
   return (
     <Card>
-      <PosterByline poster={story.poster} />
-      <Heading>{story.title}</Heading>
-      <Timestamp time={story.createdAt} />
-      <Image image={story.thumbnail} width={400} height={400} />
-      <StorySummary summary={story.summary} />
+      <PosterByline poster={data.poster} />
+      <Heading>{data.title}</Heading>
+      <Timestamp time={data.createdAt} />
+      <Image image={data.thumbnail} width={400} height={400} />
+      <StorySummary summary={data.summary} />
     </Card>
   );
 }
