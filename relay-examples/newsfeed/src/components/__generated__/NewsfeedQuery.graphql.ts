@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3bb578c6e49db560c6786fe5a2445dd3>>
+ * @generated SignedSource<<34bdbddc0565ad882b3ad8da766ddc60>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -161,12 +161,12 @@ return {
                   {
                     "kind": "Literal",
                     "name": "width",
-                    "value": 10
+                    "value": 300
                   }
                 ],
                 "kind": "ScalarField",
                 "name": "url",
-                "storageKey": "url(width:10)"
+                "storageKey": "url(width:300)"
               },
               (v0/*: any*/)
             ],
@@ -179,12 +179,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "16b70f7c7e1f7f31f2d03cc257d7d7d1",
+    "cacheID": "8eee5f938489e8542b685750eee49f05",
     "id": null,
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
-    "text": "query NewsfeedQuery {\n  topStory {\n    ...StoryFragment\n    id\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ImageFragment_4h9ouk on Image {\n  url(width: 10)\n  altText\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_4h9ouk\n  }\n}\n"
+    "text": "query NewsfeedQuery {\n  topStory {\n    ...StoryFragment\n    id\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ImageFragment_4d94KW on Image {\n  url(width: 300)\n  altText\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_4d94KW\n  }\n}\n"
   }
 };
 })();
