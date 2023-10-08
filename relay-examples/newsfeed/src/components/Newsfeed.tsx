@@ -16,7 +16,7 @@ export default function Newsfeed() {
   const data = useLazyLoadQuery<NewsfeedQueryType>(NewsfeedQuery, {});
   const story = data.topStory;
 
-  console.log(data);
+  //console.log(data);
 
   return (
     <div className="newsfeed">

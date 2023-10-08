@@ -1,12 +1,12 @@
 import * as React from "react";
+import { useFragment } from "react-relay";
+import { graphql } from "relay-runtime";
 import Card from "./Card";
 import Heading from "./Heading";
-import PosterByline, { type Props as PosterBylineProps } from "./PosterByline";
-import StorySummary from "./StorySummary";
 import Image from "./Image";
+import PosterByline from "./PosterByline";
+import StorySummary from "./StorySummary";
 import Timestamp from "./Timestamp";
-import { graphql } from "relay-runtime";
-import { useFragment } from "react-relay";
 import type { StoryFragment$key } from "./__generated__/StoryFragment.graphql";
 
 const StoryFragment = graphql`
@@ -15,10 +15,7 @@ const StoryFragment = graphql`
     summary
     createdAt
     poster {
-      name
-      profilePicture {
-        url
-      }
+      ...PosterBylineFragment
     }
     thumbnail {
       url
@@ -32,6 +29,8 @@ type Props = {
 
 export default function Story({ story }: Props): React.ReactElement {
   const data = useFragment(StoryFragment, story);
+
+  console.log(data);
 
   return (
     <Card>
