@@ -39,7 +39,7 @@ export default function PosterByline({ poster }: Props): React.ReactElement {
       />
       <div className="byline__name">{data.name}</div>
       <Hovercard targetRef={hoverRef}>
-        <PosterDetailsHovercardContents posterIddd={data.id} />
+        <PosterDetailsHovercardContents posterID={data.id} />
       </Hovercard>
     </div>
   );
