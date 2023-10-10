@@ -7,6 +7,7 @@ import { usePreloadedQuery } from "react-relay";
 import type { PreloadedQuery } from "react-relay";
 import type { PosterDetailsHovercardContentsQuery as QueryType } from "./__generated__/PosterDetailsHovercardContentsQuery.graphql";
 import type { PosterDetailsHovercardContentsBodyFragment$key } from "./__generated__/PosterDetailsHovercardContentsBodyFragment.graphql";
+import OrganizationKind from "./OrganizationKind";
 
 export const PosterDetailsHovercardContentsQuery = graphql`
   query PosterDetailsHovercardContentsQuery($posterID: ID!) {
@@ -69,6 +70,12 @@ function PosterDetailsHovercardContentsBody({
       <ul className="posterHovercard__details">
         <li>
           Joined <Timestamp time={data.joined} />
+          {data.location != null && <li>{data.location.name}</li>}
+          {data.organizationKind != null && (
+            <li>
+              <OrganizationKind kind={data.organizationKind} />
+            </li>
+          )}
         </li>
       </ul>
       <div className="posterHovercard__buttons">
