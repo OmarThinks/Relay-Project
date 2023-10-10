@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fd2688a0098fc86d550b8578d75dd402>>
+ * @generated SignedSource<<30bb5ad7ca65e9c8b87e34a7d7c8ecec>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,7 @@ export type StoryCommentsSectionFragment$data = {
       } | null;
     } | null> | null;
     readonly pageInfo: {
+      readonly hasNextPage: boolean | null;
       readonly startCursor: string | null;
     } | null;
   } | null;
@@ -62,6 +63,13 @@ const node: ReaderFragment = {
               "args": null,
               "kind": "ScalarField",
               "name": "startCursor",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "hasNextPage",
               "storageKey": null
             }
           ],
@@ -109,6 +117,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "7ebe8c1765cff7355b3a4b9f88bdc03f";
+(node as any).hash = "e9d4e16676f6e03f8949e30db0f5eecd";
 
 export default node;
