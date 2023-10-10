@@ -8,10 +8,14 @@ import {
 } from "react-relay";
 import { NewsfeedQuery as NewsfeedQueryType } from "./__generated__/NewsfeedQuery.graphql";
 import { NewsfeedContentsFragment$key } from "./__generated__/NewsfeedContentsFragment.graphql";
+import {
+  NewsfeedFragment$data,
+  NewsfeedFragment$key,
+} from "./__generated__/NewsfeedFragment.graphql";
 
 const NewsfeedQuery = graphql`
   query NewsfeedQuery {
-    ...NewsfeedContentsFragment
+    ...NewsfeedFragment
   }
 `;
 
@@ -32,6 +36,13 @@ const NewsfeedQuery = graphql`
 `;
 */
 
+const NewsfeedFragment = graphql`
+  fragment NewsfeedFragment on Query {
+    ...NewsfeedContentsFragment
+  }
+`;
+
+/*
 const NewsfeedContentsFragment = graphql`
   fragment NewsfeedContentsFragment on Query {
     viewer {
@@ -46,8 +57,8 @@ const NewsfeedContentsFragment = graphql`
     }
   }
 `;
+*/
 
-/*
 const NewsfeedContentsFragment = graphql`
   fragment NewsfeedContentsFragment on Query
   @argumentDefinitions(
@@ -68,24 +79,19 @@ const NewsfeedContentsFragment = graphql`
     }
   }
 `;
-*/
+
 export default function Newsfeed() {
   const queryData = useLazyLoadQuery<NewsfeedQueryType>(NewsfeedQuery, {});
 
-  /*
-  const { data, loadNext } = usePaginationFragment(
+  const data1 = useFragment<NewsfeedFragment$key>(NewsfeedFragment, queryData);
+
+  const { data: a, loadNext } = usePaginationFragment(
     NewsfeedContentsFragment,
-    queryData
+    data1 as NewsfeedContentsFragment$key
   );
+  //a.viewer.newsfeedStories.edges;
 
-  */
-
-  const data = useFragment<NewsfeedContentsFragment$key>(
-    NewsfeedContentsFragment,
-    queryData
-  );
-
-  const storyEdges = data.viewer.newsfeedStories.edges;
+  const storyEdges = a.viewer.newsfeedStories.edges;
 
   return (
     <div className="newsfeed">
