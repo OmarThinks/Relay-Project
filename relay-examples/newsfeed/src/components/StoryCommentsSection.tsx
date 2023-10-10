@@ -36,10 +36,21 @@ const StoryCommentsSectionFragment = graphql`
 `;
 
 export default function StoryCommentsSection({ story }: Props) {
+  /*
   const data = useFragment(StoryCommentsSectionFragment, story);
   const onLoadMore = () => {
-    /* TODO */
+   
   };
+  */
+
+  const { data, loadNext } = usePaginationFragment(
+    StoryCommentsSectionFragment,
+    story
+  );
+  const onLoadMore = () => loadNext(3);
+
+  console.log(data.comments);
+
   return (
     <div>
       {data.comments.edges.map((edge) => (
