@@ -12,9 +12,15 @@ const NewsfeedQuery = graphql`
 `;
 
 const NewsfeedContentsFragment = graphql`
-  fragment NewsfeedContentsFragment on Query {
+  fragment NewsfeedContentsFragment on Query
+  @argumentDefinitions(
+    cursor: { type: "String" }
+    count: { type: "Int", defaultValue: 3 }
+  )
+  @refetchable(queryName: "NewsfeedContentsRefetchQuery") {
     viewer {
-      newsfeedStories {
+      newsfeedStories(after: $cursor, first: $count)
+        @connection(key: "NewsfeedContentsFragment_newsfeedStories") {
         edges {
           node {
             id
