@@ -32,8 +32,6 @@ type Props = {
 export default function Story({ story }: Props): React.ReactElement {
   const data = useFragment(StoryFragment, story);
 
-  console.log(data);
-
   return (
     <Card>
       <PosterByline poster={data.poster} />
