@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1df819cbac8da628f7e3b12e21e33eab>>
+ * @generated SignedSource<<8a9d096d8aeca7017238dbc234ee911b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -34,9 +34,23 @@ v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "altText",
   "storageKey": null
-};
+},
+v3 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 3
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -109,13 +123,7 @@ return {
             "name": "poster",
             "plural": false,
             "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "__typename",
-                "storageKey": null
-              },
+              (v1/*: any*/),
               {
                 "kind": "TypeDiscriminator",
                 "abstractKey": "__isActor"
@@ -143,7 +151,7 @@ return {
                     "name": "url",
                     "storageKey": null
                   },
-                  (v1/*: any*/)
+                  (v2/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -171,19 +179,13 @@ return {
                 "name": "url",
                 "storageKey": "url(width:300)"
               },
-              (v1/*: any*/)
+              (v2/*: any*/)
             ],
             "storageKey": null
           },
           {
             "alias": null,
-            "args": [
-              {
-                "kind": "Literal",
-                "name": "first",
-                "value": 3
-              }
-            ],
+            "args": (v3/*: any*/),
             "concreteType": "CommentsConnection",
             "kind": "LinkedField",
             "name": "comments",
@@ -209,6 +211,13 @@ return {
                     "args": null,
                     "kind": "ScalarField",
                     "name": "hasNextPage",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "endCursor",
                     "storageKey": null
                   }
                 ],
@@ -237,8 +246,16 @@ return {
                         "kind": "ScalarField",
                         "name": "text",
                         "storageKey": null
-                      }
+                      },
+                      (v1/*: any*/)
                     ],
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "cursor",
                     "storageKey": null
                   }
                 ],
@@ -246,6 +263,15 @@ return {
               }
             ],
             "storageKey": "comments(first:3)"
+          },
+          {
+            "alias": null,
+            "args": (v3/*: any*/),
+            "filters": null,
+            "handle": "connection",
+            "key": "StoryCommentsSectionFragment_comments",
+            "kind": "LinkedHandle",
+            "name": "comments"
           }
         ],
         "storageKey": null
@@ -253,12 +279,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "6c71e9f66f22aac22dabd2c5a57874ce",
+    "cacheID": "926548a343bc101f95a24af8a17ffa98",
     "id": null,
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
-    "text": "query NewsfeedQuery {\n  topStories {\n    id\n    ...StoryFragment\n  }\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ImageFragment_4d94KW on Image {\n  url(width: 300)\n  altText\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 3) {\n    pageInfo {\n      startCursor\n      hasNextPage\n    }\n    edges {\n      node {\n        id\n        ...CommentFragment\n      }\n    }\n  }\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_4d94KW\n  }\n  ...StoryCommentsSectionFragment\n}\n"
+    "text": "query NewsfeedQuery {\n  topStories {\n    id\n    ...StoryFragment\n  }\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ImageFragment_4d94KW on Image {\n  url(width: 300)\n  altText\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 3) {\n    pageInfo {\n      startCursor\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentFragment\n        __typename\n      }\n      cursor\n    }\n  }\n  id\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_4d94KW\n  }\n  ...StoryCommentsSectionFragment\n}\n"
   }
 };
 })();
