@@ -4,6 +4,7 @@ import { OperationType, graphql } from "relay-runtime";
 import Story from "./Story";
 import { NewsfeedContentsFragment$key } from "./__generated__/NewsfeedContentsFragment.graphql";
 import { NewsfeedQuery as NewsfeedQueryType } from "./__generated__/NewsfeedQuery.graphql";
+import InfiniteScrollTrigger from "./InfiniteScrollTrigger";
 
 const NewsfeedQuery = graphql`
   query NewsfeedQuery {
@@ -35,10 +36,14 @@ const NewsfeedContentsFragment = graphql`
 export default function Newsfeed() {
   const queryData = useLazyLoadQuery<NewsfeedQueryType>(NewsfeedQuery, {});
 
-  const { data, loadNext } = usePaginationFragment<
+  const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment<
     OperationType,
     NewsfeedContentsFragment$key
   >(NewsfeedContentsFragment, queryData);
+
+  function onEndReached() {
+    loadNext(3);
+  }
 
   const storyEdges = data.viewer?.newsfeedStories?.edges || [];
 
@@ -51,6 +56,12 @@ export default function Newsfeed() {
 
         return <Story story={storyEdge.node} key={storyEdge.node.id} />;
       })}
+
+      <InfiniteScrollTrigger
+        onEndReached={onEndReached}
+        hasNext={hasNext}
+        isLoadingNext={isLoadingNext}
+      />
     </div>
   );
 }
