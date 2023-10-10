@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9084679bca54b3fb32d232a9ecf484ad>>
+ * @generated SignedSource<<fd2688a0098fc86d550b8578d75dd402>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -41,7 +41,7 @@ const node: ReaderFragment = {
         {
           "kind": "Literal",
           "name": "first",
-          "value": 1
+          "value": 3
         }
       ],
       "concreteType": "CommentsConnection",
@@ -102,13 +102,13 @@ const node: ReaderFragment = {
           "storageKey": null
         }
       ],
-      "storageKey": "comments(first:1)"
+      "storageKey": "comments(first:3)"
     }
   ],
   "type": "Story",
   "abstractKey": null
 };
 
-(node as any).hash = "38376c4754335036300071e38e1aa708";
+(node as any).hash = "7ebe8c1765cff7355b3a4b9f88bdc03f";
 
 export default node;

@@ -13,7 +13,7 @@ export type Props = {
 
 const StoryCommentsSectionFragment = graphql`
   fragment StoryCommentsSectionFragment on Story {
-    comments(first: 1) {
+    comments(first: 3) {
       pageInfo {
         startCursor
       }
