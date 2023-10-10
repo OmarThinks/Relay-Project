@@ -40,6 +40,14 @@ const PosterDetailsHovercardContentsBodyFragment = graphql`
     profilePicture {
       ...ImageFragment
     }
+    ... on Organization {
+      organizationKind
+    }
+    ... on Person {
+      location {
+        name
+      }
+    }
   }
 `;
 
