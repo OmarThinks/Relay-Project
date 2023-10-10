@@ -8,6 +8,7 @@ import Story from "./Story";
 import { NewsfeedContentsFragment$key } from "./__generated__/NewsfeedContentsFragment.graphql";
 import { NewsfeedFragment$key } from "./__generated__/NewsfeedFragment.graphql";
 import { NewsfeedQuery as NewsfeedQueryType } from "./__generated__/NewsfeedQuery.graphql";
+import * as React from "react";
 
 const NewsfeedQuery = graphql`
   query NewsfeedQuery {
@@ -55,13 +56,17 @@ export default function Newsfeed() {
     newsFeedData as NewsfeedContentsFragment$key
   );
 
-  const storyEdges = data.viewer.newsfeedStories.edges;
+  const storyEdges = data.viewer?.newsfeedStories?.edges || [];
 
   return (
     <div className="newsfeed">
-      {storyEdges.map((storyEdge) => (
-        <Story story={storyEdge.node} key={storyEdge.node.id} />
-      ))}
+      {storyEdges.map((storyEdge) => {
+        if (!storyEdge?.node) {
+          return null;
+        }
+
+        return <Story story={storyEdge.node} key={storyEdge.node.id} />;
+      })}
     </div>
   );
 }
