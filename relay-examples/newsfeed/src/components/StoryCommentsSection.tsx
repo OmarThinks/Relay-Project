@@ -3,6 +3,7 @@ import { graphql } from "relay-runtime";
 import { useFragment } from "react-relay";
 import type { StoryCommentsSectionFragment$key } from "./__generated__/StoryCommentsSectionFragment.graphql";
 import Comment from "./Comment";
+import { usePaginationFragment } from "react-relay";
 
 const { useState, useTransition } = React;
 

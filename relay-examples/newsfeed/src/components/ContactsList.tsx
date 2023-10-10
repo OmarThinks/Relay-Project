@@ -1,10 +1,11 @@
-import { useState, useTransition } from "react";
+import * as React from "react";
 import { useRefetchableFragment } from "react-relay";
 import { graphql } from "relay-runtime";
 import Card from "./Card";
 import ContactRow from "./ContactRow";
 import SearchInput from "./SearchInput";
 import type { ContactsListFragment$key } from "./__generated__/ContactsListFragment.graphql";
+const { useState, useTransition } = React;
 
 export type Props = {
   viewer: ContactsListFragment$key;
