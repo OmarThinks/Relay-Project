@@ -36,20 +36,15 @@ const StoryCommentsSectionFragment = graphql`
 `;
 
 export default function StoryCommentsSection({ story }: Props) {
-  /*
-  const data = useFragment(StoryCommentsSectionFragment, story);
-  const onLoadMore = () => {
-   
-  };
-  */
-
+  const [isPending, startTransition] = useTransition();
   const { data, loadNext } = usePaginationFragment(
     StoryCommentsSectionFragment,
     story
   );
-  const onLoadMore = () => loadNext(3);
-
-  console.log(data.comments);
+  const onLoadMore = () =>
+    startTransition(() => {
+      loadNext(3);
+    });
 
   return (
     <div>
@@ -57,8 +52,9 @@ export default function StoryCommentsSection({ story }: Props) {
         <Comment key={edge.node.id} comment={edge.node} />
       ))}
       {data.comments.pageInfo.hasNextPage && (
-        <LoadMoreCommentsButton onClick={onLoadMore} />
+        <LoadMoreCommentsButton onClick={onLoadMore} disabled={isPending} />
       )}
+      {isPending && <p>Loading ...</p>}
     </div>
   );
 }
